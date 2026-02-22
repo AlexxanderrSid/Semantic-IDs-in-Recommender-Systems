@@ -1,1 +1,1 @@
-# Generative-Recommender-Systems
+# Semantic IDs in Recommender Systems

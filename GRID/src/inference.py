@@ -33,6 +33,7 @@ def inference(cfg: DictConfig) -> Dict[str, Any]:
             datamodule=pipeline_modules.datamodule,
             ckpt_path=ckpt_path,
             return_predictions=False,
+            weights_only=False
         )
 
 

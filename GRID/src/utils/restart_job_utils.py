@@ -3,6 +3,8 @@ import sys
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Callable, Dict, List, Optional, Set, TypeVar
+import os
+from pathlib import Path
 
 import psutil
 from lightning import Trainer
@@ -149,6 +151,7 @@ def save_metadata_to_local_or_remote(
     # Convert metadata to JSON string
     json_content = json.dumps(metadata.to_dict(), indent=2)
 
+    Path(metadata_path).parent.mkdir(parents=True, exist_ok=True)
     # Use the open_local_or_remote function which should handle gs:// paths
     with open_local_or_remote(metadata_path, "w") as f:
         f.write(json_content)

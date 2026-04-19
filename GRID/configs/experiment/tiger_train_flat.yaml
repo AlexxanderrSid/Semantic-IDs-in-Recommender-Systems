@@ -79,7 +79,7 @@ data_loading:
           transform:
             _target_: src.data.loading.components.label_function.NextKTokenMasking
             next_k: ${model.num_hierarchies}
-      batch_size_per_device: 32
+      batch_size_per_device: 256
       num_workers: 8
       timeout: 60
       assign_files_by_size: false
@@ -142,7 +142,7 @@ data_loading:
           transform:
             _target_: src.data.loading.components.label_function.NextKTokenMasking
             next_k: ${model.num_hierarchies}
-      batch_size_per_device: 8
+      batch_size_per_device: 256
       num_workers: 8
       timeout: 60
       assign_files_by_size: true
@@ -172,7 +172,7 @@ data_loading:
           transform:
             _target_: src.data.loading.components.label_function.NextKTokenMasking
             next_k: ${model.num_hierarchies}
-      batch_size_per_device: 8
+      batch_size_per_device: 256
       num_workers: 8
       timeout: 60
       assign_files_by_size: true
@@ -283,7 +283,7 @@ trainer:
   _target_: lightning.pytorch.trainer.Trainer
   default_root_dir: ${paths.output_dir}
   min_steps: 1
-  max_steps: 320000
+  max_steps: 100
   max_epochs: 10
   accelerator: gpu
   devices: -1
@@ -292,7 +292,7 @@ trainer:
   log_every_n_steps: 100
   val_check_interval: 1600
   deterministic: false
-  accumulate_grad_batches: 16
+  accumulate_grad_batches: 4
   profiler:
     _target_: lightning.pytorch.profilers.PassThroughProfiler
   strategy: ddp

@@ -78,6 +78,7 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
                 model=pipeline_modules.model,
                 datamodule=pipeline_modules.datamodule,
                 ckpt_path=ckpt_path,
+                weights_only=False
             )
             command_line_logger.info(f"Best ckpt path: {ckpt_path}")
 

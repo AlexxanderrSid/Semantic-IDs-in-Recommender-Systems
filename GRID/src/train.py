@@ -1,4 +1,5 @@
 import os
+import json
 from typing import Any, Dict, Optional, Tuple
 
 import hydra
@@ -88,6 +89,10 @@ def train(cfg: DictConfig) -> Tuple[Dict[str, Any], Dict[str, Any]]:
         metric_dict = {**train_metrics, **test_metrics}
 
         command_line_logger.info(f"Metrics: {metric_dict}")
+
+        save_path = os.path.join(os.getcwd(), "metrics.json")
+        with open(save_path, "w") as f:
+            json.dump(metric_dict, f, indent=4)
 
 
 @hydra.main(version_base="1.3", config_path="../configs", config_name="train.yaml")

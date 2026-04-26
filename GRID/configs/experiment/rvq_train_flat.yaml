@@ -199,8 +199,8 @@ trainer:
   _target_: lightning.pytorch.trainer.Trainer
   default_root_dir: ${paths.output_dir}
   min_steps: 1
-  max_steps: 30 #3000
-  max_epochs: 1 #10
+  max_steps: 3000
+  max_epochs: 10
   accelerator: gpu
   devices: -1
   num_nodes: 1
